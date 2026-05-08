@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Descubra a Palavra</title>
+</head>
+<body>
+
+  <header>
+    <a href="dado.html">Jogo do Dado 🎲</a>
+  </header>
+
+  <h1>Descubra a Palavra</h1>
+
+  <input type="password" id="palavra" placeholder="Digite a palavra">
+  <input type="text" id="dica" placeholder="Digite a dica">
+  <button onclick="iniciarJogo()">Enviar</button>
+
+  <hr>
+
+  <p>Dica: <span id="mostrarDica"></span></p>
+  <p>Palavra: <span id="mostrarPalavra"></span></p>
+
+  <button onclick="chutarLetra()">Chutar letra</button>
+
+  <script>
+
+    let palavraSecreta = ""
+    let palavraOculta = ""
+
+    function iniciarJogo() {
+      palavraSecreta = document.getElementById("palavra").value
+      palavraSecreta = palavraSecreta.toLowerCase()
+
+      let dica = document.getElementById("dica").value
+      document.getElementById("mostrarDica").textContent = dica
+
+      palavraOculta = ""
+
+      for (let i = 0; i < palavraSecreta.length; i++) {
+        if (i == 0) {
+          palavraOculta = "_"
+        } else {
+          palavraOculta = palavraOculta + " _"
+        }
+      }
+
+      document.getElementById("mostrarPalavra").textContent = palavraOculta
+    }
+
+    function chutarLetra() {
+      let letra = prompt("Digite uma letra:")
+      letra = letra.toLowerCase()
+
+      if (palavraSecreta.includes(letra)) {
+
+        let novaOculta = ""
+
+        for (let i = 0; i < palavraSecreta.length; i++) {
+
+          let letraAtual = palavraSecreta[i]
+
+          if (letraAtual == letra) {
+            if (i == 0) {
+              novaOculta = letra
+            } else {
+              novaOculta = novaOculta + " " + letra
+            }
+          } else {
+            let oculta = palavraOculta.split(" ")
+            if (i == 0) {
+              novaOculta = oculta[0]
+            } else {
+              novaOculta = novaOculta + " " + oculta[i]
+            }
+          }
+
+        }
+
+        palavraOculta = novaOculta
+        document.getElementById("mostrarPalavra").textContent = palavraOculta
+
+        let ganhou = true
+        for (let i = 0; i < palavraOculta.length; i++) {
+          if (palavraOculta[i] == "_") {
+            ganhou = false
+          }
+        }
+
+        if (ganhou == true) {
+          alert("Você ganhou!! a palavra era: " + palavraSecreta)
+        }
+
+      } else {
+        alert("essa letra não tem na palavra...")
+      }
+    }
+
+  </script>
+
+</body>
+</html>

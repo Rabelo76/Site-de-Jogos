@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Rolar um Dado</title>
+  <style>
+    #resultado {
+      font-size: 100px;
+    }
+  </style>
+</head>
+<body>
+
+    <header>
+        <a href="descubraPalavra.html">Jogo Descubra a palavra ⁉</a>
+    </header>
+
+  <h1>Rolar um Dado</h1>
+
+  <button onclick="rolarDado()">Rolar Dado</button>
+
+  <p id="resultado"></p>
+
+  <script>
+
+    function rolarDado() {
+      let numero = Math.floor(Math.random() * 6) + 1
+
+      let emoji = ""
+
+      if (numero == 1) {
+        emoji = "⚀"
+      } else if (numero == 2) {
+        emoji = "⚁"
+      } else if (numero == 3) {
+        emoji = "⚂"
+      } else if (numero == 4) {
+        emoji = "⚃"
+      } else if (numero == 5) {
+        emoji = "⚄"
+      } else {
+        emoji = "⚅"
+      }
+
+      document.getElementById("resultado").textContent = emoji
+    }
+
+  </script>
+
+</body>
+</html>
